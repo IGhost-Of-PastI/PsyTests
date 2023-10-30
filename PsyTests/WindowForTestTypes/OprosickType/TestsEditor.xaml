@@ -1,0 +1,66 @@
+﻿<Window x:Class="PsyTests.TestsEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PsyTests"
+        mc:Ignorable="d"
+        Title="TestsEditor" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"></ColumnDefinition>
+            <ColumnDefinition Width="149*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Content="Выход" Grid.Column="0"></Button>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Название:"></Label>
+                <TextBox Width="20"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Описание:"></Label>
+                <TextBox Width="Auto"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Инструкция:"></Label>
+                <TextBox Width="Auto"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Изображение:"></Label>
+                <Button Content="Обзор..."></Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Label Content="Шкалы:"></Label>
+                        <Button Content="Добавить"></Button>
+                        <Button Content="Редактировать"></Button>
+                        <Button Content="Удалить"></Button>
+                    </StackPanel>
+                    <ListBox Grid.Row="1">
+                    </ListBox>
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Label Content="Ключи:"></Label>
+                        <Button Content="Добавить"></Button>
+                        <Button Content="Редактировать"></Button>
+                        <Button Content="Удалить"></Button>
+                    </StackPanel>
+                    <ListBox Grid.Row="1">
+                    </ListBox>
+                </Grid>
+            </StackPanel>
+            <Button Content="Сохранить"></Button>
+        </StackPanel>
+    </Grid>
+    
+</Window>
