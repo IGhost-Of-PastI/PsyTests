@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PsyTests
 {
@@ -20,9 +8,24 @@ namespace PsyTests
     /// </summary>
     public partial class PageResult : Page
     {
-        public PageResult()
+        public PageResult(ObservableCollection<Shkala> shkalas)
         {
             InitializeComponent();
+            foreach (Shkala shkala in shkalas)
+            {
+                StackPanel stackPanel = new StackPanel();
+                stackPanel.Orientation = Orientation.Horizontal;
+                Label label = new Label();
+                label.Content = shkala.Name;
+                stackPanel.Children.Add(label);
+                ProgressBar bar = new ProgressBar();
+                bar.Maximum = shkala.GetNumberOfLinkedQuestions();
+                bar.Minimum = 0;
+                bar.Value = shkala.GetValue();
+                stackPanel.Children.Add(label);
+                ResultsPanel.Children.Add(stackPanel);
+            }
+           
         }
     }
 }

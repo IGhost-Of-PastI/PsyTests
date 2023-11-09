@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PsyTests"
         mc:Ignorable="d"
         Title="TestsEditor" Height="450" Width="800">
-    <Grid>
+    <Grid Width="800">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="51*"></ColumnDefinition>
             <ColumnDefinition Width="149*"></ColumnDefinition>
@@ -15,15 +15,15 @@
         <StackPanel Grid.Column="1" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Название:"></Label>
-                <TextBox Width="20"></TextBox>
+                <TextBox x:Name="TestName" Width="20"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Описание:"></Label>
-                <TextBox Width="Auto"></TextBox>
+                <TextBox x:Name="TestOpisan" Width="400" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Инструкция:"></Label>
-                <TextBox Width="Auto"></TextBox>
+                <TextBox x:Name="TestAlgorith" Width="400" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Изображение:"></Label>
@@ -37,11 +37,12 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
                         <Label Content="Шкалы:"></Label>
-                        <Button Content="Добавить"></Button>
+                        <Button Content="Добавить" Click="AddShakala_Click"></Button>
                         <Button Content="Редактировать"></Button>
                         <Button Content="Удалить"></Button>
                     </StackPanel>
-                    <ListBox Grid.Row="1">
+                    <ListBox x:Name="ShkalasList" Grid.Row="1" SelectionChanged="ShkalasList_SelectionChanged" DisplayMemberPath="Name" Height="150">
+                        
                     </ListBox>
                 </Grid>
                 <Grid>
@@ -51,15 +52,23 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
                         <Label Content="Ключи:"></Label>
-                        <Button Content="Добавить"></Button>
+                        <Button Content="Добавить" Click="Button_Click_1"></Button>
                         <Button Content="Редактировать"></Button>
                         <Button Content="Удалить"></Button>
                     </StackPanel>
-                    <ListBox Grid.Row="1">
+                    <ListBox x:Name="KeysList" Grid.Row="1">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding Value}" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
             </StackPanel>
-            <Button Content="Сохранить"></Button>
+            <Button Content="Сохранить" Click="SaveTest_Click"></Button>
         </StackPanel>
     </Grid>
     

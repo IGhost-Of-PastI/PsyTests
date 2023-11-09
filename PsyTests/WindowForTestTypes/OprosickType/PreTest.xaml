@@ -20,6 +20,6 @@
         <TextBlock x:Name="Name" Text="" Grid.Row="1"></TextBlock>
         <TextBlock x:Name="Opis" Text="" Grid.Row="2"></TextBlock>
         <TextBlock x:Name="Algorith" Text="" Grid.Row="3"></TextBlock>
-        <Button x:Name="Start" Content="Начать" Grid.Row="4"></Button>
+        <Button x:Name="Start" Content="Начать" Grid.Row="4" Click="Start_Click"></Button>
     </Grid>
 </Page>

@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace PsyTests
 {
@@ -19,9 +7,12 @@ namespace PsyTests
     /// </summary>
     public partial class PreTestWindow : Window
     {
-        public PreTestWindow()
+        public PreTestWindow(OprosnicTest oprosnicTest)
         {
             InitializeComponent();
+            PreTest preTest = new PreTest(oprosnicTest);
+            MainPage.Navigate(preTest);
+           
         }
     }
 }

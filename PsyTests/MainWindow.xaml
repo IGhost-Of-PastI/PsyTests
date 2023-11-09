@@ -17,16 +17,28 @@
             <ColumnDefinition Width="267*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <WrapPanel x:Name="List_of_Tests" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,29,0,0" Grid.RowSpan="2"/>
+        <WrapPanel x:Name="List_of_Tests" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,29,0,0" Grid.RowSpan="2">
+            <ListView x:Name="TestsList" Width="528" Height="293">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Width="60">
+                            <Image Source="{Binding Image}" Width="50" Height="50"/>
+                            <TextBlock Text="{Binding Name}" Margin="10,0"/>
+                            <Button Content="Начать тест" Click="Button_Click" Margin="10,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </WrapPanel>
 
         <TextBox x:Name="SearchBox" Grid.Row="0" Grid.Column="1"></TextBox>
         <Button Grid.Column="2"></Button>
         <ComboBox Grid.Column="2"></ComboBox>
 
         <StackPanel Grid.Column="0" Grid.RowSpan="2" Background="BlueViolet" Orientation="Vertical">
-            <Button Content="Редактор тестов"/>
+            <Button Content="Редактор тестов" Click="Button_Click_1"/>
             <Button Content="Импорт тестов" />
-            
+
         </StackPanel>
     </Grid>
 </Window>

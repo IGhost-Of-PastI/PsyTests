@@ -9,11 +9,6 @@
       Title="PageResult">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <TextBlock></TextBlock>
-        <ListView Grid.Row="1"></ListView>
+        <StackPanel x:Name="ResultsPanel" Orientation="Vertical"></StackPanel>
     </Grid>
 </Page>
