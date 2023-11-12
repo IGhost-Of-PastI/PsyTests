@@ -16,7 +16,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Grid.Row="0"></Image>
+        <Image x:Name="ImageBox" Grid.Row="0"></Image>
         <TextBlock x:Name="Name" Text="" Grid.Row="1"></TextBlock>
         <TextBlock x:Name="Opis" Text="" Grid.Row="2"></TextBlock>
         <TextBlock x:Name="Algorith" Text="" Grid.Row="3"></TextBlock>

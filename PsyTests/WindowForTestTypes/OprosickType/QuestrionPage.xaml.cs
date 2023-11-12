@@ -65,7 +65,7 @@ namespace PsyTests
                         key.shkala.ChangeValueOfShkala(Deside(true, 1));
                         break; }
                 case 4: {
-                        key.shkala.ChangeValueOfShkala(Deside(true, 1));
+                        key.shkala.ChangeValueOfShkala(Deside(true, 2));
                         break; }
             }
            

@@ -18,9 +18,14 @@
             <RowDefinition Height="159*"></RowDefinition>
             <RowDefinition Height="37*"></RowDefinition>
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <Label x:Name="CurrentPage" Grid.Column="1"></Label>
+            <Label x:Name="MaxQuestions" Width="Auto" Content="/"></Label>
+        </StackPanel>
+       
         <Frame x:Name="QuestionFrame" Grid.Row="1" Grid.ColumnSpan="2"></Frame>
         <Button Content="Выход"></Button>
-        <Button Grid.Row="2" Grid.Column="1" Content="Следующая" Click="NextPage_Click"></Button>
-        <Button Grid.Row="2" Content="Предыдущая" Click="PrevPage_Click"></Button>
+        <!--<Button x:Name="ButtonNextPage" Grid.Row="2" Grid.Column="1" Content="Следующая" Click="NextPage_Click"></Button>-->
+        <!--<Button Grid.Row="2" Content="Предыдущая" Click="PrevPage_Click"></Button>-->
     </Grid>
 </Page>

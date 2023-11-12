@@ -15,7 +15,7 @@
         <StackPanel Grid.Column="1" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Название:"></Label>
-                <TextBox x:Name="TestName" Width="20"></TextBox>
+                <TextBox x:Name="TestName" Width="120"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Описание:"></Label>
@@ -41,8 +41,12 @@
                         <Button Content="Редактировать"></Button>
                         <Button Content="Удалить"></Button>
                     </StackPanel>
-                    <ListBox x:Name="ShkalasList" Grid.Row="1" SelectionChanged="ShkalasList_SelectionChanged" DisplayMemberPath="Name" Height="150">
-                        
+                    <ListBox x:Name="ShkalasList" Grid.Row="1" SelectionChanged="ShkalasList_SelectionChanged" Height="150">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding shkala.Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
                 <Grid>
@@ -56,7 +60,7 @@
                         <Button Content="Редактировать"></Button>
                         <Button Content="Удалить"></Button>
                     </StackPanel>
-                    <ListBox x:Name="KeysList" Grid.Row="1">
+                    <ListBox x:Name="KeysList" Grid.Row="1" Height="150">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

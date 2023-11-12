@@ -22,8 +22,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical" Width="60">
-                            <Image Source="{Binding Image}" Width="50" Height="50"/>
-                            <TextBlock Text="{Binding Name}" Margin="10,0"/>
+                            <Image Source="{Binding metaData.PathToImg}" Width="50" Height="50"/>
+                            <TextBlock Text="{Binding metaData.Name}" Margin="10,0"/>
                             <Button Content="Начать тест" Click="Button_Click" Margin="10,0"/>
                         </StackPanel>
                     </DataTemplate>

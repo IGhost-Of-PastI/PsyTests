@@ -4,37 +4,51 @@ using System.Runtime.Serialization.Json;
 using System.Windows;
 using System.Windows.Controls;
 using PsyTests.WindowForTestTypes.OprosickType;
+using System.Collections.Generic;
 
 namespace PsyTests
 {
-   
-    /// <summary>
-    /// Логика взаимодействия для TestsEditor.xaml
-    /// </summary>
-    /// 
- 
-
     public partial class TestsEditor : Window
     {
-        ObservableCollection<Shkala> shkalas = new ObservableCollection<Shkala>();
+        ObservableCollection<LinkedNode> LinkedNodes = new();
         public TestsEditor()
         {
             InitializeComponent();
-            ShkalasList.ItemsSource = shkalas;
+            ShkalasList.ItemsSource = LinkedNodes;
+        }
+        private void AddNewElement(string value)
+        {
+            bool temp = false;
+            foreach(LinkedNode node in LinkedNodes)
+            {
+                if(node.shkala.Name==value)
+                {
+                    temp = true;
+                    break;
+                }
+            }
+            if(temp==false)
+            {
+                LinkedNodes.Add(new LinkedNode(new Shkala(value)));
+            }
+            else
+            {
+                MessageBox.Show("Шкала с таким названием уже существует!");
+            }
         }
         private void OnChildWindowClosed(object sender, string value)
         {
-            shkalas.Add(new Shkala(value));
+            AddNewElement(value);
         }
         private void OnChildWindowClosed1(object sender, string value)
         {
-            var selectedItem = ShkalasList.SelectedItem as Shkala;
+            var selectedItem = ShkalasList.SelectedItem as LinkedNode;
             if (selectedItem != null)
             {
-
-                selectedItem.Keys.Add(new Key(value,selectedItem));
+                selectedItem.collection.Add(new Key(value, selectedItem.shkala));
                 KeysList.ItemsSource = null;
-                KeysList.ItemsSource = selectedItem.Keys;
+                KeysList.ItemsSource = selectedItem.collection;
+
             }
         }
         private void AddShakala_Click(object sender, RoutedEventArgs e)
@@ -56,21 +70,68 @@ namespace PsyTests
 
         private void ShkalasList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItem = ShkalasList.SelectedItem as Shkala;
+            var selectedItem = ShkalasList.SelectedItem as LinkedNode;
             if(selectedItem !=null)
             {
                 KeysList.ItemsSource = null;
-                KeysList.ItemsSource=selectedItem.Keys;
+                KeysList.ItemsSource=selectedItem.collection;
+            }
+        }
+
+        bool IsAllShkalasAndKeysFilled()
+        {
+            if(LinkedNodes.Count!=0)
+            {
+                bool temp = true;
+                foreach (LinkedNode linkedNode in LinkedNodes)
+                {
+                    if(linkedNode.collection.Count==0)
+                    {
+                        temp = false;
+                        break;
+                    }
+                }
+                return temp;
+            }
+            else
+            {
+                return false;
             }
         }
 
         private void SaveTest_Click(object sender, RoutedEventArgs e)
         {
-            OprosnicTest test = new OprosnicTest(TestName.Text, TestOpisan.Text, "pathToImage", TestAlgorith.Text, shkalas);
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(OprosnicTest));
-            using (FileStream fs = new FileStream($"Tests/{TestName.Text}.json", FileMode.Create))
+
+            if(TestName.Text !=""&&TestOpisan.Text!=""&&TestAlgorith.Text!=""&&IsAllShkalasAndKeysFilled()==true)
             {
-                serializer.WriteObject(fs, test);
+                TestMetaData testMeta = new();
+                testMeta.Name = TestName.Text;
+                testMeta.Opisanie = TestOpisan.Text;
+                testMeta.Algorithm = TestAlgorith.Text;
+                testMeta.PathToImg = "pathtoImg";
+                List<Shkala> shkalas = new();
+                List<Key> keys = new();
+                foreach (LinkedNode linkedNode in LinkedNodes)
+                {
+                    shkalas.Add(linkedNode.shkala);
+                    foreach (Key key in linkedNode.collection)
+                    {
+                        keys.Add(key);
+                    }
+                }
+
+                OprosnicTest test = new OprosnicTest(testMeta, shkalas, keys);
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(OprosnicTest));
+                using (FileStream fs = new FileStream($"Tests/{TestName.Text}.json", FileMode.Create))
+                {
+                    serializer.WriteObject(fs, test);
+                }
+                MessageBox.Show("Сохранение прошло успешно!");
+                //отправить экшион в родительское окно
+            }
+            else
+            {
+                MessageBox.Show("Не все поля заполнены!");
             }
         }
     }

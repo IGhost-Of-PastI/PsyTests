@@ -5,44 +5,78 @@ using System.Windows.Controls;
 
 namespace PsyTests
 {
+    //enum States
+    //{
+    //    None,
+    //    StartList,
+    //    EndList
+    //}
     /// <summary>
     /// Логика взаимодействия для TestPage.xaml
     /// </summary>
     public partial class TestPage : Page
     {
+        public TestPage(TestProcess process)
+        {
+            InitializeComponent();
+            this.process = process;
+            maxQuestions = process.keys.Count;
+            process.SetAllValuesToZero();
+            MaxQuestions.Content += maxQuestions.ToString();
+            CurrentPage.Content = currentQuestion+1;
+            //foreach (Shkala shkala in process.shkalas)
+            //{
+            //    shkala.SetValueToZero();
+            //}
+            foreach (Key key in process.keys)
+            {
+                QuestrionPage page = new(key);
+                pages.Add(page);
+                page.Checked += NextPage;
+            }
+            QuestionFrame.Navigate(pages[0]);
+        }
         //для прогресс бар нужно знать коллчиство вопросв для конкретной шкалы
+       
+        //States states = States.StartList;
         List<QuestrionPage> pages=new();
         int currentQuestion = 0;
         int maxQuestions;
         TestProcess process;
-        QuestrionPage GetNextQuestion()
+        private QuestrionPage GetNextQuestion()
         {
-            currentQuestion++;
-            if(currentQuestion==maxQuestions)
+            if (currentQuestion != maxQuestions - 1)
             {
-                currentQuestion--;
-                return null;
+                currentQuestion++;
+                //if (currentQuestion == maxQuestions - 1)
+                //{
+                //    states = States.EndList;
+                //    ButtonNextPage.Content = "Завершить тест";
+                //}
+                CurrentPage.Content = currentQuestion+1;
+                return pages[currentQuestion];
             }
             else
             {
-                return pages[currentQuestion];
-            }
-            
-        }
-        QuestrionPage GetPrevQuestion()
-        {
-            currentQuestion--;
-            if(currentQuestion==0)
-            {
-                currentQuestion--;
+                FinalizeTest();
                 return null;
             }
-            else
-            {
-                return pages[currentQuestion];
-            }
-            
         }
+        //private QuestrionPage GetPrevQuestion()
+        //{
+        //    if (currentQuestion != 0)
+        //    {
+        //        currentQuestion--;
+        //        if (currentQuestion == 0)
+        //        {
+        //            states = States.StartList;
+        //            ButtonNextPage.IsEnabled = false;
+        //            ///вынести отключения и включения кнопок в другую функцию
+        //        }
+        //        return pages[currentQuestion];
+        //    }
+
+        //}
         void NextPage()
         {
             QuestrionPage page = GetNextQuestion();
@@ -50,19 +84,19 @@ namespace PsyTests
             {
                 QuestionFrame.Navigate(page);
             }
-            else
-            {
-                FinalizeTest();
-            }
+            //else
+            //{
+            //    //FinalizeTest();
+            //}
         }
-        void PrevPage()
-        {
-            QuestrionPage page = GetPrevQuestion();
-            if (page != null)
-            {
-                QuestionFrame.Navigate(page);
-            }
-        }
+        //void PrevPage()
+        //{
+        //    QuestrionPage page = GetPrevQuestion();
+        //    if (page != null)
+        //    {
+        //        QuestionFrame.Navigate(page);
+        //    }
+        //}
         void FinalizeTest()
         {
             bool ansvered=true;
@@ -80,39 +114,23 @@ namespace PsyTests
                 {
                     page.CheckAnsver();
                 }
-                this.NavigationService.Navigate(new PageResult(process.shkalas));
+                this.NavigationService.Navigate(new PageResult(process));
             }
             else
             {
                 //не на все отвечено
             }
         }
-        public TestPage(TestProcess process)
-        {
-            InitializeComponent();
-            this.process = process;
-            maxQuestions = process.keys.Count;
-            foreach(Shkala shkala in process.shkalas)
-            {
-                shkala.SetValueToZero();
-            }
-            foreach(Key key in process.keys)
-            {
-                QuestrionPage page = new(key);
-                pages.Add(page);
-                page.Checked += NextPage;
-            }
-            QuestionFrame.Navigate(pages[0]);
-        }
+       
 
-        private void NextPage_Click(object sender, RoutedEventArgs e)
-        {
-            NextPage();
-        }
+        //private void NextPage_Click(object sender, RoutedEventArgs e)
+        //{
+        //    NextPage();
+        //}
 
-        private void PrevPage_Click(object sender, RoutedEventArgs e)
-        {
-            PrevPage();
-        }
+        //private void PrevPage_Click(object sender, RoutedEventArgs e)
+        //{
+        //    PrevPage();
+        //}
     }
 }

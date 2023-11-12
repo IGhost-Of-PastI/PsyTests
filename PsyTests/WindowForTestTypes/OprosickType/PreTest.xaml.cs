@@ -13,11 +13,15 @@ namespace PsyTests
         {
             InitializeComponent();
             this.test = test;
+            Name.Text = test.metaData.Name;
+            Opis.Text = test.metaData.Opisanie;
+            Algorith.Text = test.metaData.Algorithm;
+            //ImageBox = test.metaData.PathToImg;
         }
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-            TestPage testPage = new TestPage(new TestProcess(test.Shakli));
+            TestPage testPage = new TestPage(new TestProcess(test.Shakli,test.Keys));
             this.NavigationService.Navigate(testPage);
         }
     }
