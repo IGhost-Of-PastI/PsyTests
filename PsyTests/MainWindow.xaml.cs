@@ -13,9 +13,8 @@ namespace PsyTests
     public partial class MainWindow : Window
     {
         ObservableCollection<OprosnicTest> oprosnics = new ObservableCollection<OprosnicTest>();
-        public MainWindow()
+        private void LoadTest()
         {
-            InitializeComponent();
             string folderPath = "Tests/";
             string[] jsonFiles = Directory.GetFiles(folderPath, "*.json");
 
@@ -23,11 +22,26 @@ namespace PsyTests
             {
                 string json = File.ReadAllText(filePath);
                 OprosnicTest? test = JsonSerializer.Deserialize<OprosnicTest>(json);
-                oprosnics.Add(test);
+                if(test!=null)
+                {
+                    TestMetaData meta = test.metaData;
+                    meta.PathToImg= System.IO.Path.GetFullPath(test.metaData.PathToImg);
+                    test.metaData = meta;
+                    oprosnics.Add(test);
+                }
             }
-            TestsList.ItemsSource = oprosnics;
+            ListOfOprosnics.ItemsSource = null;
+            ListOfOprosnics.ItemsSource = oprosnics;
         }
-
+        public MainWindow()
+        {
+            InitializeComponent();
+            LoadTest();
+        }
+        public void OnTestEditorSaveEvent()
+        {
+            LoadTest();
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
@@ -39,6 +53,7 @@ namespace PsyTests
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             TestsEditor testsEditor = new TestsEditor();
+            testsEditor.AfterSaveEvent += OnTestEditorSaveEvent;
             testsEditor.ShowDialog();
         }
     }

@@ -32,14 +32,10 @@ namespace PsyTests
         {
             this.Name=Name;
             this.Opisanie = Opisanie;
-            this.PathToImg = PathToImg;
+            this.PathToImg = System.IO.Path.GetFullPath(PathToImg);
             this.Algorithm = Algorithm;
         }
     }
-    //проверка данных на заполнение
-    //автоматическое обновление тестов в списке
-    //разные ссылки это не один и тот же объект
-    //уникальные шкалы
     [DataContract]
   public class OprosnicTest
   {
@@ -49,7 +45,6 @@ namespace PsyTests
             Shakli = shakli;
             Keys = keys;
         }
-        //public OprosnicTest() { }
         [DataMember]
         public TestMetaData metaData { get; set; }
         [DataMember]
@@ -64,7 +59,6 @@ namespace PsyTests
         {
             Name = name;
             value = 0;
-            //Keys = new ObservableCollection<Key>();
         }
         [DataMember(Name = "Name")]
         public string Name { get; set; }
@@ -72,10 +66,6 @@ namespace PsyTests
         public void ChangeValueOfShkala(int value)
         {
             this.value += value;
-            //if (value < 0)
-            //{
-            //    SetValueToZero();
-            //}
         }
         public int GetValue()
         {
@@ -85,24 +75,7 @@ namespace PsyTests
         {
             value = 0;
         }
-        //[DataMember(Name = "Keys")]
-        //public ObservableCollection<Key> Keys { get; set; }
-
-
-        //
     }
-
-    //public class TestShkala:Shkala
-    //{
-      
-    //    TestShkala(Shkala shkala) : base(shkala.Name)
-    //    {
-
-    //    }
-    //    //TestShkala(string name):base(name) 
-    //    //{}
-       
-    //}
 
     [DataContract]
     public class Key

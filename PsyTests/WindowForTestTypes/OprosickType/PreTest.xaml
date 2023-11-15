@@ -6,20 +6,21 @@
       xmlns:local="clr-namespace:PsyTests"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PreTest">
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Image x:Name="ImageBox" Grid.Row="0"></Image>
-        <TextBlock x:Name="Name" Text="" Grid.Row="1"></TextBlock>
-        <TextBlock x:Name="Opis" Text="" Grid.Row="2"></TextBlock>
-        <TextBlock x:Name="Algorith" Text="" Grid.Row="3"></TextBlock>
-        <Button x:Name="Start" Content="Начать" Grid.Row="4" Click="Start_Click"></Button>
-    </Grid>
+      Title="Информация о тесте">
+    <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image x:Name="ImageBox" Grid.Row="0"></Image>
+            <TextBlock Height="Auto" x:Name="Name" Text="" Grid.Row="1"></TextBlock>
+            <TextBlock Height="Auto" x:Name="Opis" Text="" Grid.Row="2"></TextBlock>
+            <TextBlock Height="Auto" x:Name="Algorith" Text="" Grid.Row="3"></TextBlock>
+            <Button Style="{DynamicResource ButtonExit}" Foreground="White" FontSize="36" x:Name="Start" Content="Начать" Grid.Row="4" Click="Start_Click"></Button>
+        </Grid>
+    </ScrollViewer>
 </Page>

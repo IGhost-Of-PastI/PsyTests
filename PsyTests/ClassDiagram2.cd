@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PsyTests.LinkedNode">
+    <Position X="6.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\OprosnicTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PsyTests.OprosnicTest">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAACAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\OprosnicTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PsyTests.Shkala">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAKAAAAAAAAAAAAAQAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\OprosnicTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PsyTests.Key">
+    <Position X="6.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\OprosnicTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PsyTests.TestProcess">
+    <Position X="4.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAACAAAAAIAAIAAAAAAAAAAAAAAAAAAEAAAAAIAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\OprosnicTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PsyTests.PageResult" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\PageResult.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PsyTests.PreTest" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\PreTest.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PsyTests.QuestrionPage" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACEAAAGAACAAAAAAAAAAAAAABACAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\QuestrionPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PsyTests.PreTestWindow" BaseTypeListCollapsed="true">
+    <Position X="1" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\Test.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PsyTests.TestPage" BaseTypeListCollapsed="true">
+    <Position X="8" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAABAAACAAAAAAAAAAAAMAAAAACAAAEAAAgAAAAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\TestPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PsyTests.TestsEditor" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAABAAACBAAAQABACABEEIAAAAAAAAQBACAAAAQA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\TestsEditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PsyTests.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="1" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAEAAAAACAEAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PsyTests.WindowForTestTypes.OprosickType.AddElement" BaseTypeListCollapsed="true">
+    <Position X="1" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABABAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\AddElement.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Struct Name="PsyTests.TestMetaData">
+    <Position X="8" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>WindowForTestTypes\OprosickType\OprosnicTest.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

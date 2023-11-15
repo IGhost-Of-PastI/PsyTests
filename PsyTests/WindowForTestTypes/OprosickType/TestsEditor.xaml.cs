@@ -5,16 +5,29 @@ using System.Windows;
 using System.Windows.Controls;
 using PsyTests.WindowForTestTypes.OprosickType;
 using System.Collections.Generic;
+using System;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
 
 namespace PsyTests
 {
     public partial class TestsEditor : Window
     {
+        public BitmapImage LoadImage(string relativePath)
+        {
+            string fullpath = System.IO.Path.GetFullPath(relativePath);
+            Uri uri = new Uri(fullpath);
+           return new BitmapImage(uri);
+        }
+
+        public event Action AfterSaveEvent;
         ObservableCollection<LinkedNode> LinkedNodes = new();
+        string pathToImage = @"Images/noImage.jpg";
         public TestsEditor()
         {
             InitializeComponent();
-            ShkalasList.ItemsSource = LinkedNodes;
+            ShkalasList.ItemsSource = LinkedNodes; 
+            TestImage.Source = LoadImage(pathToImage);
         }
         private void AddNewElement(string value)
         {
@@ -66,6 +79,10 @@ namespace PsyTests
                 childWindow.ChildWindowClosed += OnChildWindowClosed1;
                 childWindow.ShowDialog();
             }
+            else
+            {
+                MessageBox.Show("Не выбрана шкала для добавления ключа!");
+            }
         }
 
         private void ShkalasList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,7 +125,7 @@ namespace PsyTests
                 testMeta.Name = TestName.Text;
                 testMeta.Opisanie = TestOpisan.Text;
                 testMeta.Algorithm = TestAlgorith.Text;
-                testMeta.PathToImg = "pathtoImg";
+                testMeta.PathToImg = pathToImage;
                 List<Shkala> shkalas = new();
                 List<Key> keys = new();
                 foreach (LinkedNode linkedNode in LinkedNodes)
@@ -127,11 +144,65 @@ namespace PsyTests
                     serializer.WriteObject(fs, test);
                 }
                 MessageBox.Show("Сохранение прошло успешно!");
-                //отправить экшион в родительское окно
+                AfterSaveEvent?.Invoke();
             }
             else
             {
                 MessageBox.Show("Не все поля заполнены!");
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите закрыть окно? Все несохранённые данные будут утеряны!", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if(ShkalasList.SelectedItem!=null && KeysList.SelectedItem!=null)
+            {
+                var node = ShkalasList.SelectedItem as LinkedNode;
+                node.collection.Remove(KeysList.SelectedItem as Key);
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            if (ShkalasList.SelectedItem != null)
+            {
+                LinkedNodes.Remove(ShkalasList.SelectedItem as LinkedNode);
+            }
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string sourcePath = openFileDialog.FileName;
+                string targetPath = "Images/"; // Замените на путь к вашей папке
+                string Filename = Path.GetFileName(sourcePath);
+                try
+                {
+                    File.Copy(sourcePath, Path.Combine(targetPath, Path.GetFileName(sourcePath)), true);
+                    pathToImage = targetPath + Filename;
+                    TestImage.Source = LoadImage(pathToImage);
+                    MessageBox.Show("Файл успешно скопирован!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при копировании файла: " + ex.Message);
+                }
             }
         }
     }

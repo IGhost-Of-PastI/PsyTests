@@ -5,10 +5,15 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>False</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Tests\" />
+    <Compile Remove="OprosnicTest.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="WindowForTestTypes\OprosickType\OprosnicTest.cs" />
   </ItemGroup>
 
 </Project>

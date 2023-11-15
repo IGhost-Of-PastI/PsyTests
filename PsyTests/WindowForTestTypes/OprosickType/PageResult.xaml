@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:PsyTests"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageResult">
+      Title="Окно результатов">
 
-    <Grid>
+    <ScrollViewer>
         <StackPanel x:Name="ResultsPanel" Orientation="Vertical"></StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Page>

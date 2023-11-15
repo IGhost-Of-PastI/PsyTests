@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PsyTests"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Гланое окно" Height="450" Width="800">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="29*"></RowDefinition>
-            <RowDefinition Height="405*"></RowDefinition>
+            <!--<RowDefinition Height="405*"></RowDefinition>-->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="224*"></ColumnDefinition>
@@ -17,7 +17,23 @@
             <ColumnDefinition Width="267*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <WrapPanel x:Name="List_of_Tests" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,29,0,0" Grid.RowSpan="2">
+        <ListBox BorderBrush="White" x:Name="ListOfOprosnics" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel FlowDirection="LeftToRight"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding metaData.PathToImg}" Height="100" Width="100"/>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding metaData.Name}" />
+                        <Button Style="{DynamicResource ButtonExit}" Content="Начать" Click="Button_Click"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ListBox>
+        <!--<WrapPanel x:Name="List_of_Tests" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,29,0,0" Grid.RowSpan="2">
             <ListView x:Name="TestsList" Width="528" Height="293">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -29,15 +45,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </WrapPanel>
+        </WrapPanel>-->
 
-        <TextBox x:Name="SearchBox" Grid.Row="0" Grid.Column="1"></TextBox>
+        <!--<TextBox x:Name="SearchBox" Grid.Row="0" Grid.Column="1"></TextBox>
         <Button Grid.Column="2"></Button>
-        <ComboBox Grid.Column="2"></ComboBox>
+        <ComboBox Grid.Column="2"></ComboBox>-->
 
-        <StackPanel Grid.Column="0" Grid.RowSpan="2" Background="BlueViolet" Orientation="Vertical">
-            <Button Content="Редактор тестов" Click="Button_Click_1"/>
-            <Button Content="Импорт тестов" />
+        <StackPanel Grid.Column="0" Grid.RowSpan="2" Background="LightBlue" Orientation="Vertical">
+            <Button Style="{DynamicResource ButtonExit}" FontSize="24" Foreground="White" Content="Редактор тестов" Click="Button_Click_1"/>
+            <!--<Button Content="Импорт тестов" />-->
 
         </StackPanel>
     </Grid>

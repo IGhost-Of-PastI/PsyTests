@@ -5,75 +5,84 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PsyTests"
         mc:Ignorable="d"
-        Title="TestsEditor" Height="450" Width="800">
-    <Grid Width="800">
+        Title="Редактор тестов" Height="450" Width="800" Closing="Window_Closing">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="51*"></ColumnDefinition>
             <ColumnDefinition Width="149*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Content="Выход" Grid.Column="0"></Button>
-        <StackPanel Grid.Column="1" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Название:"></Label>
-                <TextBox x:Name="TestName" Width="120"></TextBox>
+        <Button Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{DynamicResource ButtonExit}" Content="Выход" Grid.Column="0" Click="Button_Click" Foreground="White" FontSize="36"></Button>
+        <ScrollViewer Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Center" Grid.Column="1" Orientation="Vertical">
+                <StackPanel Margin="0,4,0,4" Orientation="Horizontal">
+                    <Label Content="Название:"></Label>
+                    <TextBox x:Name="TestName" Width="120"></TextBox>
+                </StackPanel>
+                <StackPanel  Margin="0,4,0,4" Orientation="Horizontal">
+                    <Label Content="Описание:"></Label>
+                    <TextBox x:Name="TestOpisan" Height="75" Width="400" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"></TextBox>
+                </StackPanel>
+                <StackPanel  Margin="0,4,0,4" Orientation="Horizontal">
+                    <Label Content="Инструкция:"></Label>
+                    <TextBox x:Name="TestAlgorith" Width="400" Height="75" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"></TextBox>
+                </StackPanel>
+                <StackPanel  Margin="0,4,0,4" Orientation="Horizontal">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"></RowDefinition>
+                            <RowDefinition Height="7*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Content="Изображение:"></Label>
+                        <Button Style="{DynamicResource ButtonExit}" Grid.Row="1" Content="Обзор..." Click="Button_Click_4"></Button>
+                    </Grid>
+                    <Image x:Name="TestImage" Width="100" Height="100" Visibility="Visible"/>
+                </StackPanel>
+                <StackPanel Margin="0,4,0,4" Orientation="Horizontal">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <Label Content="Шкалы:"></Label>
+                            <Button Style="{DynamicResource ButtonExit}" Content="Добавить" Click="AddShakala_Click"></Button>
+                            <!--<Button Content="Редактировать"></Button>-->
+                            <Button Style="{DynamicResource ButtonExit}" Content="Удалить" Click="Button_Click_3"></Button>
+                        </StackPanel>
+                        <ListBox x:Name="ShkalasList" Grid.Row="1" SelectionChanged="ShkalasList_SelectionChanged" Height="150" Width="250">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding shkala.Name}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <Label Content="Ключи:"></Label>
+                            <Button Style="{DynamicResource ButtonExit}" Content="Добавить" Click="Button_Click_1"></Button>
+                            <!--<Button Content="Редактировать"></Button>-->
+                            <Button Style="{DynamicResource ButtonExit}" Content="Удалить" Click="Button_Click_2"></Button>
+                        </StackPanel>
+                        <ListBox x:Name="KeysList" Grid.Row="1" Height="150" Width="250">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox IsChecked="{Binding Value}" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </StackPanel>
+                <Button Style="{DynamicResource ButtonExit}" Margin="0,2,0,2" Content="Сохранить" Click="SaveTest_Click"></Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Описание:"></Label>
-                <TextBox x:Name="TestOpisan" Width="400" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Инструкция:"></Label>
-                <TextBox x:Name="TestAlgorith" Width="400" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Изображение:"></Label>
-                <Button Content="Обзор..."></Button>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Label Content="Шкалы:"></Label>
-                        <Button Content="Добавить" Click="AddShakala_Click"></Button>
-                        <Button Content="Редактировать"></Button>
-                        <Button Content="Удалить"></Button>
-                    </StackPanel>
-                    <ListBox x:Name="ShkalasList" Grid.Row="1" SelectionChanged="ShkalasList_SelectionChanged" Height="150">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding shkala.Name}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Label Content="Ключи:"></Label>
-                        <Button Content="Добавить" Click="Button_Click_1"></Button>
-                        <Button Content="Редактировать"></Button>
-                        <Button Content="Удалить"></Button>
-                    </StackPanel>
-                    <ListBox x:Name="KeysList" Grid.Row="1" Height="150">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <CheckBox IsChecked="{Binding Value}" />
-                                    <TextBlock Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </StackPanel>
-            <Button Content="Сохранить" Click="SaveTest_Click"></Button>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
-    
+
 </Window>
